@@ -1,6 +1,6 @@
 # SyncMundial 🏆⚽
 
-**SyncMundial** es un sincronizador web premium diseñado para ver partidos del mundial y eventos deportivos con la mejor calidad de imagen posible (1080p bitrate alto / 4K) combinando el audio de relatores locales en español en segundo plano.
+**SyncMundial** es un sincronizador web de iframes diseñado para ver partidos del mundial y eventos deportivos con la mejor calidad de imagen posible (1080p bitrate alto / 4K) combinando el audio de relatores locales en español en segundo plano.
 
 ---
 
@@ -33,25 +33,5 @@ Sin embargo, escuchar el partido en portugués o inglés no siempre es la mejor 
 * **Fox Sports US**
 * **SporTV**
 * **Personalizado...** (permite ingresar cualquier URL de iframe que desees)
-
----
-
-## 💻 Configuración Local
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/tu-usuario/SyncMundial.git
-   ```
-2. Entra al directorio:
-   ```bash
-   cd SyncMundial
-   ```
-3. Instala y corre un servidor local (por ejemplo, usando `http-server` o `pnpm`):
-   ```bash
-   pnpm run dev
-   ```
-4. Abre [http://localhost:5000](http://localhost:5000) en tu navegador.
-
----
 
 *Desarrollado para vivir el fútbol con la calidad visual que se merece, y con la pasión de nuestros relatos.* ⚽🇦🇷
