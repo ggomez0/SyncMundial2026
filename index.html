@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncMundial - Sincronizador de Video y Audio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css?v=1.8">
+</head>
+<body>
+    <div class="app-container">
+        <div class="control-bar" id="iframeControlBar">
+            <div class="control-bar-group">
+                <div class="brand-small">
+                    <i data-lucide="shuffle" class="brand-icon"></i>
+                    <span>SyncMundial</span>
+                </div>
+                <div class="vertical-divider"></div>
+                
+                <div class="selector-group">
+                    <span class="selector-label"><i data-lucide="video" class="inline-icon"></i> Video:</span>
+                    <select id="videoSelect" class="source-dropdown">
+                        <option value="https://latamvidzfy.org/caze2.php" selected>CazéTV</option>
+                        <option value="https://latamvidzfy.org/dsportsar.php">DSports</option>
+                        <option value="https://latamvidzs.org/canal.php?stream=tycsports">TyC Sports</option>
+                        <option value="https://latamvidzfy.org/fox1us.php">Fox Sports US</option>
+                        <option value="https://latamvidzfy.org/sportv1.php">SporTV</option>
+                        <option value="custom">Personalizado...</option>
+                    </select>
+                </div>
+
+                <button class="swap-btn" id="btnSwapSources" title="Intercambiar Video y Audio (Viceversa)">
+                    <i data-lucide="arrow-left-right"></i>
+                </button>
+
+                <div class="selector-group">
+                    <span class="selector-label"><i data-lucide="volume-2" class="inline-icon"></i> Audio:</span>
+                    <select id="audioSelect" class="source-dropdown">
+                        <option value="https://latamvidzfy.org/caze2.php">CazéTV</option>
+                        <option value="https://latamvidzfy.org/dsportsar.php" selected>DSports</option>
+                        <option value="https://latamvidzs.org/canal.php?stream=tycsports">TyC Sports</option>
+                        <option value="https://latamvidzfy.org/fox1us.php">Fox Sports US</option>
+                        <option value="https://latamvidzfy.org/sportv1.php">SporTV</option>
+                        <option value="custom">Personalizado...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-bar-actions">
+                <button class="action-btn primary-action" id="btnStartSync">
+                    <i data-lucide="volume-2"></i>
+                    Sincronizar Audio
+                </button>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="mode-container active" id="iframeModeContainer">
+                <div class="iframe-sync-layout">
+                    <div class="iframe-box video-box">
+                        <iframe 
+                            allowfullscreen="true" 
+                            scrolling="no" 
+                            src="https://latamvidzfy.org/caze2.php?mute=1&amp;muted=1&amp;volume=0" 
+                            allow="encrypted-media" 
+                            frameborder="0" 
+                            id="videoIframe"
+                            class="sync-iframe">
+                        </iframe>
+                    </div>
+
+                    <div class="iframe-box audio-box" id="audioIframeContainer">
+                        <iframe 
+                            allowfullscreen="true" 
+                            scrolling="no" 
+                            src="https://latamvidzfy.org/dsportsar.php" 
+                            allow="encrypted-media" 
+                            frameborder="0" 
+                            id="audioIframe"
+                            class="sync-iframe">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="sync-banner" id="syncBanner">
+                    <div class="sync-banner-content">
+                        <i data-lucide="info"></i>
+                        <span><strong>Modo Sincronización:</strong> Reproduce y pausa cualquiera de los dos reproductores directamente para sincronizarlos. Al terminar, presiona el botón verde.</span>
+                    </div>
+                    <button class="success-btn" id="btnFinishSync">
+                        <i data-lucide="check-circle"></i> Listo, ocultar audio
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="configModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configurar Canales (Iframe)</h2>
+                <button class="close-modal" id="btnCloseConfigModal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="guide-intro">Si alguno de los canales no carga debido a un cambio de dominio o bloqueo, puedes actualizar sus enlaces aquí:</p>
+                <div class="input-group">
+                    <label for="inputIframeVideoUrl">Enlace del Iframe de Video</label>
+                    <div class="input-with-icon">
+                        <i data-lucide="video"></i>
+                        <input type="text" id="inputIframeVideoUrl" placeholder="Pega el enlace personalizado de video...">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="inputIframeAudioUrl">Enlace del Iframe de Audio</label>
+                    <div class="input-with-icon">
+                        <i data-lucide="volume-2"></i>
+                        <input type="text" id="inputIframeAudioUrl" placeholder="Pega el enlace personalizado de audio...">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="primary-btn" id="btnApplyIframeUrls">
+                    <i data-lucide="save"></i> Guardar y Aplicar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js?v=1.8"></script>
+</body>
+</html>
